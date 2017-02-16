@@ -52,7 +52,7 @@ public class TimeParser  {
         return timeStrings; //returning [12,00]
     }
 
-    private String translateHours(ArrayList<String> hourToTranslate) {
+    public String translateHours(ArrayList<String> hourToTranslate) {
         String returnValue =  hourToTranslate.get(0);
         String outputText = "";
         int numberVersion = Integer.parseInt(returnValue);
@@ -76,7 +76,7 @@ public class TimeParser  {
 //        return outputText;
 //    }
 
-    private String translateStringText(String timeToTranslate) {
+    public String translateStringText(String timeToTranslate) {
         String outputText = "";
         switch (timeToTranslate) {
             case "00": outputText = ""; break;
@@ -133,7 +133,7 @@ public class TimeParser  {
     }
 
 
-    private String translateMinutes(ArrayList<String> minutesToTranslate) { //incoming array of form [01, 23, PM]
+    public String translateMinutes(ArrayList<String> minutesToTranslate) { //incoming array of form [01, 23, PM]
         String outputText = "";
 
         char firstMinuteComponent = minutesToTranslate.get(1).charAt(0); //Capture group 2 from RegEx
@@ -171,7 +171,7 @@ public class TimeParser  {
         return outputText;
     }
 
-    private String convertTimeOfDay(ArrayList <String> timeToTranslate){
+    public String convertTimeOfDay(ArrayList <String> timeToTranslate){
         timeOfDay = timeToTranslate.get(2).toUpperCase();
         if(timeOfDay.equals("PM")) {
             return "PM";
@@ -189,7 +189,6 @@ public class TimeParser  {
     public void militaryTimeTranslatedToWords(ArrayList<String> timeToTranslate){
         String hourInWords = translateHours(timeToTranslate);
         String minutesInWords = translateMinutes(timeToTranslate);
-        //String timeOfDayInWords = timeOfDay;
         System.out.print("The time is " + hourInWords + " " + minutesInWords + " " + timeOfDay);
     }
 }

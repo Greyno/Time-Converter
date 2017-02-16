@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertSame;
 
 /**
  * Created by gillianreynolds-titko on 2/13/17.
@@ -51,7 +52,31 @@ public class TimeParserTest {
         input.add("12");
         input.add("20");
         input.add("AM");
-        String expected = "fifteen";
+        String expected = "twenty";
+        String actual = timeParser.translateMinutes(input);
+        assertEquals("Expected the times to be equal", expected, actual);
+        //returns string
+    }
+
+    @Test
+    public void translateThirtyMinutesTest() {
+        ArrayList<String> input = new ArrayList<>();
+        input.add("12");
+        input.add("30");
+        input.add("AM");
+        String expected = "thirty";
+        String actual = timeParser.translateMinutes(input);
+        assertEquals("Expected the times to be equal", expected, actual);
+        //returns string
+    }
+
+    @Test
+    public void translateFortyMinutesTest() {
+        ArrayList<String> input = new ArrayList<>();
+        input.add("12");
+        input.add("40");
+        input.add("AM");
+        String expected = "forty";
         String actual = timeParser.translateMinutes(input);
         assertEquals("Expected the times to be equal", expected, actual);
         //returns string
@@ -120,7 +145,7 @@ public class TimeParserTest {
 //        input.add("05");
 //        input.add("PM");
 //        timeParser.standardTimeTranslatedToWords(input);
-//        assertEquals("Expected the strings to be equal", expected, actual);
+//
 //    }
 //
 //    @Test
