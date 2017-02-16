@@ -7,12 +7,11 @@ import java.util.regex.Pattern;
 /**
  * Created by gillianreynolds-titko on 2/13/17.
  */
-public class TimeParser extends TimeConverter {
+public class TimeParser  {
 
-    ArrayList<String> timeStrings = new ArrayList<>();
-    String timeOfDay="";
+    private ArrayList<String> timeStrings = new ArrayList<>();
+    private String timeOfDay="";
 
-    @Override
     public ArrayList<String> parseStandardTime(String inputTime) throws StringParseError {
 
         //String matcherText = "([0-9][0-9])([:])([0-9])([0-9])(([pP]|[aA])[mM])"; //match 01:23PpM to [01, :, 2, 3, PM]
@@ -53,8 +52,7 @@ public class TimeParser extends TimeConverter {
         return timeStrings; //returning [12,00]
     }
 
-    @Override
-    public String translateHours(ArrayList<String> hourToTranslate) {
+    private String translateHours(ArrayList<String> hourToTranslate) {
         String returnValue =  hourToTranslate.get(0);
         String outputText = "";
         int numberVersion = Integer.parseInt(returnValue);
@@ -78,7 +76,7 @@ public class TimeParser extends TimeConverter {
 //        return outputText;
 //    }
 
-    public String translateStringText(String timeToTranslate) {
+    private String translateStringText(String timeToTranslate) {
         String outputText = "";
         switch (timeToTranslate) {
             case "00": outputText = ""; break;
@@ -135,8 +133,7 @@ public class TimeParser extends TimeConverter {
     }
 
 
-    @Override
-    public String translateMinutes(ArrayList<String> minutesToTranslate) { //incoming array of form [01, 23, PM]
+    private String translateMinutes(ArrayList<String> minutesToTranslate) { //incoming array of form [01, 23, PM]
         String outputText = "";
 
         char firstMinuteComponent = minutesToTranslate.get(1).charAt(0); //Capture group 2 from RegEx
@@ -174,14 +171,14 @@ public class TimeParser extends TimeConverter {
         return outputText;
     }
 
-    public String convertTimeOfDay(ArrayList <String> timeToTranslate){
+    private String convertTimeOfDay(ArrayList <String> timeToTranslate){
         timeOfDay = timeToTranslate.get(2).toUpperCase();
         if(timeOfDay.equals("PM")) {
             return "PM";
         } else return "AM";
     }
 
-    @Override
+
     public void standardTimeTranslatedToWords(ArrayList<String> timeToTranslate){
         String hourInWords = translateHours(timeToTranslate);
         String minutesInWords = translateMinutes(timeToTranslate);

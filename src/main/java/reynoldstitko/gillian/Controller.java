@@ -7,11 +7,10 @@ import java.util.ArrayList;
  */
 public class Controller {
 
-    private Display display = new Display();
     public TimeParser timeParser = new TimeParser();
+    private Display display = new Display();
     private String timeType = "";
-    private String standardTimeType;
-    private String militaryTimeType;
+    private String timeInput = "";
 
 
     public void askUserForTimeType() throws StringParseError{
@@ -24,14 +23,14 @@ public class Controller {
     }
 
     public void askUserForStandardTimeInput() throws StringParseError{
-        standardTimeType = display.askUserForTime("What standard time do you want to convert? ");
-        ArrayList<String> result = timeParser.parseStandardTime(standardTimeType);
+        timeInput = display.askUserForTime("What standard time do you want to convert? ");
+        ArrayList<String> result = timeParser.parseStandardTime(timeInput);
         timeParser.standardTimeTranslatedToWords(result);
     }
 
     public void askUserForMilitaryTimeInput() throws StringParseError{
-        standardTimeType = display.askUserForTime("What military time do you want to convert? ");
-        ArrayList<String> result = timeParser.parseMilitaryTime(standardTimeType);
+        timeInput = display.askUserForTime("What military time do you want to convert? ");
+        ArrayList<String> result = timeParser.parseMilitaryTime(timeInput);
         timeParser.militaryTimeTranslatedToWords(result);
     }
 
